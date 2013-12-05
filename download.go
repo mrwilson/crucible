@@ -8,6 +8,7 @@ import (
   "io/ioutil"
   "io"
   "os"
+  "fmt"
 )
 
 const (
@@ -31,6 +32,7 @@ func createFile(home string, playbook string, path string, file *zip.File) {
 }
 
 func DownloadPlayBook(playbook string) {
+  fmt.Printf("Downloading %s...",playbook)
 
   url := strings.Join([]string{githubUrl, playbook, githubPackage}, "/")
 
@@ -56,6 +58,8 @@ func DownloadPlayBook(playbook string) {
       createFile(home, playbook, filepath.Join(path...), f)
     }
   }
+
+  fmt.Println("complete!")
 }
 
 func createPlayBookTree(home string, playBook string) {

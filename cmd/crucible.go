@@ -6,7 +6,12 @@ import (
 )
 
 func main() {
-  //crucible.RunPlaybook(os.Args[1:])
-  crucible.DownloadPlayBook(os.Args[1])
+
+  if os.Args[1] == "get" {
+    crucible.DownloadPlayBook(os.Args[2])
+  } else {
+    crucible.RunPlaybook(os.Args[1:])
+  }
+
 }
 
