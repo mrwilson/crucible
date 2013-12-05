@@ -1,4 +1,6 @@
-# Crucible - A simple wrapper around ansible-playbook
+## Crucible
+
+  A simple wrapper around ansible-playbook
 
 ## Build Instructions
 
