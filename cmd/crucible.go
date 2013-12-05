@@ -6,6 +6,7 @@ import (
 )
 
 func main() {
-  crucible.RunPlaybook(os.Args[1:])
+  //crucible.RunPlaybook(os.Args[1:])
+  crucible.DownloadPlayBook(os.Args[1])
 }
 

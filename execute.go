@@ -3,34 +3,17 @@ package crucible
 import (
   "fmt"
   "os/exec"
-  "os/user"
-  "strings"
-)
-
-const (
-  ansibleCommand string = "ansible-playbook"
-  crucibleDir    string = ".crucible"
+  "path/filepath"
 )
 
 func RunPlaybook(options []string) {
 
-  usr, err := user.Current()
-
-  if err != nil {
-    fmt.Println(err)
-  }
-
-  playBookPath := []string{ usr.HomeDir, crucibleDir, options[0], "site.yml" }
-
-  options[0] = strings.Join(playBookPath, "/")
+  options[0] = filepath.Join(HomeDir(), crucibleDir, options[0], "site.yml")
 
   cmd := exec.Command(ansibleCommand, options...)
   cmd.Env = nil
-  out, err := cmd.CombinedOutput()
 
-  if err != nil {
-    fmt.Println(err)
-  }
+  out, err := cmd.CombinedOutput(); HandleErr(err);
 
   fmt.Println(string(out))
 
